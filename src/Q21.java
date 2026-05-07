@@ -3,6 +3,12 @@
 
 import java.util.Scanner;
 
+class NegativeNumberException extends Exception {
+    public NegativeNumberException(String message) {
+        super(message);
+    }
+}
+
 public class Q21 {
 
     public int evenSum(int lowLmt, int uppLmt){
@@ -25,9 +31,16 @@ public class Q21 {
                 System.out.println("Calculate the sum of Even Numbers in Range");
                 System.out.print("Enter Range (Lower limit): ");
                 lowLmt = sc.nextInt();
+                if(lowLmt < 0)
+                    throw new NegativeNumberException("Negative Number not Allowed!!!");
                 System.out.print("Enter Range (Upper limit): ");
                 uppLmt = sc.nextInt();
+                if(uppLmt < 0)
+                    throw new NegativeNumberException("Negative Number not Allowed!!!");
                 break;
+            } catch (NegativeNumberException e){
+                System.out.println(e.getMessage());
+                sc.nextLine();
             } catch (Exception e) {
                 System.out.println("Invalid Input!!!");
                 sc.nextLine(); // to clear invalid input
