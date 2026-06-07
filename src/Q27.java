@@ -10,38 +10,47 @@ public class Q27 {
         System.out.print("Enter a String: ");
         String input = sc.nextLine().toLowerCase();
         // String[] inpArr = input.split("");
-        char[] inpArr = input.toCharArray();
+        // char[] inpArr = input.toCharArray();
 
-        String Lpd = "";
+        String LongestPD = "";
         int LpdSize = 0;
 
-        if (inpArr.length == 1) {
-            Lpd += inpArr[0];
+        if (input == "" || input.length() == 0) {
+            LongestPD = "";
+        }
+
+        if (input.length() == 1) {
+            LongestPD = input;
             LpdSize = 1;
         }
-        // if (inpArr.length == 2) {
-        //     Lpd += input;
-        //     LpdSize = 2;
-        // }
 
-        for (int i = 0, j = inpArr.length - 1; i <= inpArr.length - 2; i++) {
+        if (input.length() >= 2) {
+            for (int i = 0; i < input.length() - 1; i++) {
+                for (int j = input.length() - 1; j > i; j--) {
+                    if (input.charAt(i) == input.charAt(j)) {
+                        int x = i;
+                        int y = j;
+                        String front = "";
+                        String back = "";
+                        while (x <= j) {
+                            front += input.charAt(x);
+                            x++;
+                        }
+                        while (y >= i) {
+                            back += input.charAt(y);
+                            y--;
+                        }
+                        if (front.equals(back) && front.length() > LongestPD.length()) {
+                            LongestPD = front;
+                            LpdSize = LongestPD.length();
+                        }
 
-            if ((inpArr[i] == inpArr[j]) && (inpArr.length > 1)) {
-                String temp1 = "";
-                String temp2 = "";
-
-                for (int x = i, y = j; x < inpArr.length - i; x++, y--) {
-                    temp1 += inpArr[x];
-                    temp2 += inpArr[y];
-                }
-                if ((temp1.equals(temp2)) && (LpdSize < temp1.length())) {
-                    Lpd = temp1;
-                    LpdSize = temp1.length();
+                    }
                 }
             }
         }
 
-        System.out.println("Largest Palindrom in String is: " + Lpd);
+        System.out.println("Largest Palindrom in String is: " + LongestPD);
         System.out.println("Size of plindrome is: " + LpdSize);
     }
 }
