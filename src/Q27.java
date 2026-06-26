@@ -3,7 +3,7 @@
 
 import java.util.Scanner;
 
-public class Q27 {
+public class Q27 {n
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
